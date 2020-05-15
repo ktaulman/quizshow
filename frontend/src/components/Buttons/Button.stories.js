@@ -1,65 +1,17 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { Button, Typography, MuiThemeProvider, createMuiTheme,makeStyles } from '@material-ui/core';
+
+//Material UI 
+import {Button, Typography, MuiThemeProvider, createMuiTheme,makeStyles, IconButton } from '@material-ui/core';
+
 //Custom Components 
+import NavBarLogoButton from './NavBar/NavBarLogoButton';
 import NavBarButton from './NavBar/NavBarButton';
 import QuestionBoardReportButton from './QuestionBoard/QuestionBoardReportButton';
 import QuestionBoardFavoriteButton from './QuestionBoard/QuestionBoardFavoriteButton';
-import QuestionBoardDetailsButton from './QuestionBoard/QuestionBoardDetailsButton'
-//font imports 
-import RedHook from '../../fonts/RedHook.otf';
-import lmBold from '../../fonts/LEMONMILK-Bold.otf';
-import lmRegular from '../../fonts/LEMONMILK-Regular.otf';
-import lmItalics from '../../fonts/LEMONMILK-RegularItalic.otf'
+import QuestionBoardDetailsButton from './QuestionBoard/QuestionBoardDetailsButton';
 
-//Font Themes 
-const lemonMilkBold={
-    fontFamily:'Lemon Milk Bold',
-    fontStyle:'normal',
-    fontDisplay:'swap',
-    fontWeight:400,
-    src:`url(${lmBold}) format('otf')`
-};
-const lemonMilkRegular={
-    fontFamily:'Lemon Milk',
-    fontStyle:'normal',
-    fontDisplay:'swap',
-    fontWeight:400,
-    src:`url(${lmRegular}) format('otf')`
-};
-const lemonMilkItalic={
-    fontFamily:'Lemon Milk Italic',
-    fontStyle:'normal',
-    fontDisplay:'swap',
-    fontWeight:400,
-    src:`url(${lmItalics}) format('otf')`
-};
-
-const redhook ={
-    fontFamily:'Red Hook',
-    fontStyle:'normal',
-    fontDisplay:'swap',
-    fontWeight:400,
-    src:`url(${RedHook}) format('otf')`
-}
-
-//Theme for Whole Document 
-const theme=createMuiTheme({
-    palette:{
-        primary:{
-            main:'#F9B600',
-            navBar:'#FFFFFF'
-        },
-        secondary:{
-            main:'#0B59A2'
-        },
-    },
-    typography:{
-        fontFamily:'Lemon Milk',
-    }
-});
-
-//individual styles for Button 
+//Theme Imports 
+import StorybookThemeProvider from '../../providers/StorybookThemeProvider'
 
 
 //START OF STORYBOOK VISUAL TESTING 
@@ -69,16 +21,20 @@ export default {
   };
   
   export const allButtons = () => (
-        <MuiThemeProvider theme={theme}>
+        <StorybookThemeProvider>
         <div style={{
                 height:'100vh',
                 
         }}>
-
             {/* NAV BAR BUTTONS  */}
-            <Typography>NavBar Buttons</Typography>
+            <Typography variant='h3' >NavBar Buttons</Typography>
+
+
             <br/>
             <br/>
+            <Typography>Logo Home Button</Typography>
+            <NavBarLogoButton>QZ</NavBarLogoButton>
+
             <Typography>Register</Typography>
             <NavBarButton onClick={console.log('Register')}>Register</NavBarButton>
 
@@ -88,7 +44,7 @@ export default {
             <hr/>
 
             {/* API REQUEST BUTTONS */}
-            <Typography>API Request Buttons</Typography>
+            <Typography variant='h3'>API Request Buttons</Typography>
             <br/>
             <br/>
             <Typography>Submit Button</Typography>
@@ -110,7 +66,7 @@ export default {
 
             <hr/>
             {/* ROUTER LINK BUTTONS  */}
-            <Typography>Router Link Buttons</Typography>
+            <Typography variant='h3'> Router Link Buttons</Typography>
             <br/>
             <br/>
             <Typography>Back Button </Typography>
@@ -135,7 +91,7 @@ export default {
             <hr/>
             {/* QuestionBoardButtons*/}
         
-            <Typography>Question Board Buttons</Typography>
+            <Typography variant='h3'> Question Board Buttons</Typography>
             <br/>
             <QuestionBoardReportButton> Report</QuestionBoardReportButton>
             <br/>
@@ -144,9 +100,13 @@ export default {
             <QuestionBoardFavoriteButton>Favorite</QuestionBoardFavoriteButton>
             <br/>
             <br/>
+            <Button variant='contained' color='secondary' >Add A Question</Button>
+            <hr/>
+            <Typography></Typography>
+            <IconButton></IconButton>
 
-             
+
         </div>
-        </MuiThemeProvider>
+        </StorybookThemeProvider>
     )
   

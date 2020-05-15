@@ -1,16 +1,22 @@
+//react
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { MuiThemeProvider, createMuiTheme,makeStyles } from '@material-ui/core';
-import {Link} from 'react-router-dom'
-
-
+//Material UI Imports 
+import {MuiThemeProvider, createMuiTheme, ThemeProvider} from '@material-ui/core';
 //font imports 
 import RedHook from '../fonts/RedHook.otf';
 import lmBold from '../fonts/LEMONMILK-Bold.otf';
 import lmRegular from '../fonts/LEMONMILK-Regular.otf';
-import lmItalics from '../fonts/LEMONMILK-RegularItalic.otf'
+import lmItalics from '../fonts/LEMONMILK-RegularItalic.otf';
+
+
+
+
+export default function StoryBookThemeProvider ({children}){ 
 
 //Font Themes 
+const laSolid={
+
+}
 const lemonMilkBold={
     fontFamily:'Lemon Milk Bold',
     fontStyle:'normal',
@@ -46,7 +52,7 @@ const theme=createMuiTheme({
     palette:{
         primary:{
             main:'#F9B600',
-            navBar:'#FFFFFF'
+            navBar:'#FFFFFF',
         },
         secondary:{
             main:'#0B59A2'
@@ -54,14 +60,39 @@ const theme=createMuiTheme({
     },
     typography:{
         fontFamily:'Lemon Milk',
+    },
+    overrides:{
+        MuiGrid:{
+            root:{
+            },
+
+        },
+        MuiButton:{
+            root:{
+                minHeight:'30px',
+                "&:hover":{
+                    backgroundColor:'inherit',
+                    textDecoration:'underline',
+                    color:'primary'
+                }
+            },
+            label:{
+                lineHeight:'0',
+                margin:'5px'
+            },
+            text:{
+                padding:'0 10px'
+            }
+          
+        }
     }
+    
 });
 
-export default {
-    component:Link,
-    title:'Links in project'
-}
 
-export const AllLinks=()=>(
-    <div>hello there</div>
-)
+    return(
+        <MuiThemeProvider theme={theme}>
+            {children}
+        </MuiThemeProvider>
+    )
+}

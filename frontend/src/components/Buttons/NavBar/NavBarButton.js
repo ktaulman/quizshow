@@ -11,7 +11,9 @@ const useStyles = makeStyles({
     });
 
 
-export default function NavBarButton({children}){
+function NavBarButton(props){
     const classes=useStyles();
-    return <Button className={classes.root}>{children}</Button>
+    return <Button className={classes.root} {...props}></Button>
 } 
+NavBarButton.muiName='button'
+export default NavBarButton;
